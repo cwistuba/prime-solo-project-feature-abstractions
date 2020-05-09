@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -9,7 +9,17 @@ const AboutPage = () => (
   <div>
     <div>
       <p>
-        This about page is for anyone to read!
+        <h2>What is this?</h2>
+        <div>
+          One of the many positives of living in Kansas City is access to over
+          50 golf courses. With so many options, it is difficult to remember the
+          courses you have enjoyed, previously. “Of Course” is an awesome app
+          that gives Golfer’s quick access to their favorite golf courses, all
+          in one list. Golfers can save their favorite courses in the app and
+          then refer back to their list when they are planning on playing their
+          next round. “Where was that sweet course with the really high par 3
+          hole?”. “Of course!”
+        </div>
       </p>
     </div>
   </div>
