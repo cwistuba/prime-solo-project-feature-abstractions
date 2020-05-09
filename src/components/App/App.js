@@ -15,7 +15,10 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
+<<<<<<< HEAD
 import InfoPage from "../InfoPage/InfoPage";
+=======
+>>>>>>> 048555be905b5d3bef98e435afed94b9bdb451c6
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";

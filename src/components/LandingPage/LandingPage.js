@@ -13,6 +13,13 @@ class LandingPage extends Component {
     this.props.history.push("/login");
   };
 
+<<<<<<< HEAD
+=======
+  onRegister = (event) => {
+    this.props.history.push("/registration");
+  };
+
+>>>>>>> 048555be905b5d3bef98e435afed94b9bdb451c6
   render() {
     return (
       <div className="container">
@@ -24,6 +31,13 @@ class LandingPage extends Component {
             <button className="btn btn_sizeFull" onClick={this.onLogin}>
               Login
             </button>
+<<<<<<< HEAD
+=======
+            <h3>Need to Register?</h3>
+            <button className="btn btn_sizeFull" onClick={this.onRegister}>
+              Register
+            </button>
+>>>>>>> 048555be905b5d3bef98e435afed94b9bdb451c6
           </div>
         </div>
       </div>
