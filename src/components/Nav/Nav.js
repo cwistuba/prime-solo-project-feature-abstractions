@@ -1,25 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import "./Nav.css";
+import mapStoreToProps from "../../redux/mapStoreToProps";
 
 const Nav = (props) => {
   let loginLinkData = {
-    path: '/home',
-    text: 'Login / Register',
+    path: "/home",
+    text: "Login / Register",
   };
 
   if (props.store.user.id != null) {
-    loginLinkData.path = '/admin';
-    loginLinkData.text = 'Home';
+    loginLinkData.path = "/user";
+    loginLinkData.text = "Home";
   }
 
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">OF COURSE!</h2>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
@@ -31,10 +31,13 @@ const Nav = (props) => {
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>
-            <Link className="nav-link" to="/info">
+<<<<<<< HEAD
+            {/* <Link className="nav-link" to="/info">
               Info Page
-            </Link>
-            <LogOutButton className="nav-link"/>
+            </Link> */}
+=======
+>>>>>>> 048555be905b5d3bef98e435afed94b9bdb451c6
+            <LogOutButton className="nav-link" />
           </>
         )}
         {/* Always show this link since the about page is not protected */}
