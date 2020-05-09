@@ -1,18 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import React from "react";
+import { connect } from "react-redux";
+import mapStoreToProps from "../../redux/mapStoreToProps";
+import CourseMap from "../MapPage/MapPage";
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
+
+clickAddCourse (event) => {
+  this.props.history.push(`/about`);
+};
+
 const UserPage = (props) => (
   <div>
-    <h1 id="welcome">
-      Welcome, { props.store.user.username }!
-    </h1>
-    <p>Your ID is: {props.store.user.id}</p>
-    <LogOutButton className="log-in" />
+    <h1 id="welcome">Welcome, {props.store.user.username}!</h1>
+    <h2>Your Courses</h2>
+    <CourseMap />
+    <button onClick={this.clickAddCourse}>Add Course</button>
+    <br />
+    <div>List of Courses</div>
   </div>
 );
 
