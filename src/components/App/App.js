@@ -15,13 +15,11 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-<<<<<<< HEAD
-import InfoPage from "../InfoPage/InfoPage";
-=======
->>>>>>> 048555be905b5d3bef98e435afed94b9bdb451c6
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import NewCourse from "../NewCoursePage/NewCoursePage";
+import InfoPage from "../InfoPage/InfoPage";
 
 import "./App.css";
 
@@ -49,9 +47,10 @@ class App extends Component {
             <ProtectedRoute exact path="/user" component={UserPage} />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-            {/* <ProtectedRoute exact path="/info" component={InfoPage} /> */}
+            <ProtectedRoute exact path="/info" component={InfoPage} />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will be redirected to the authRedirect path provided. */}
+            {/* <ProtectedRoute exact path="/newcourse" component={NewCourse} /> */}
             <ProtectedRoute
               exact
               path="/login"
