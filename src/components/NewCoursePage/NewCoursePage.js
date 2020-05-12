@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import GoogleMapReact from "google-map-react";
+import Marker from "google-map-react";
 
 class NewCourse extends Component {
   componentDidMount() {
@@ -23,6 +24,16 @@ class NewCourse extends Component {
   };
 
   render() {
+    const courseList = this.props.store.courses || [];
+    const courseName = courseList.map((item, index) => {
+      return (
+        <div key={index}>
+          <p>{item.name}</p>
+        </div>
+      );
+    });
+    console.log("THIS IS A TEST", courseName);
+
     return (
       <div>
         <div>
@@ -35,8 +46,28 @@ class NewCourse extends Component {
             bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API }}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
-          ></GoogleMapReact>
+          >
+            {/* {this.props.store.courses_list.map((item, index) => {
+              <Marker
+                key={index.id}
+                position={{
+                  lat: item.latitude,
+                  lng: item.longitude,
+                }}
+              />;
+            })} */}
+          </GoogleMapReact>
           <button onClick={this.homeBack}>Go Back</button>
+          <div>
+            {/* {courseList.map((item, index) => {
+              return (
+                <div key={index}>
+                  <p>{item.name}</p>
+                </div>
+              );
+            })} */}
+            {/* <p>{courseList.name}</p> */}
+          </div>
         </div>
       </div>
     );
