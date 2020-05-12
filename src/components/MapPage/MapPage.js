@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import GoogleMapReact from "google-map-react";
+import { withRouter } from "react-router-dom";
 
 class CourseMap extends Component {
   static defaultProps = {
@@ -37,4 +38,4 @@ class CourseMap extends Component {
 //   reduxState,
 // });
 
-export default connect(mapStoreToProps)(CourseMap);
+export default withRouter(connect(mapStoreToProps)(CourseMap));
