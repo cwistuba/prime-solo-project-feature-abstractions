@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
-import CourseMap from "../MapPage/MapPage";
+import CourseMap from "../MapUserPage/MapUserPage";
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
