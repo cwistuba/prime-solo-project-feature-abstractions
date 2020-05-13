@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import MapAllCourses from "../MapAllCoursesPage/MapAllCoursesPage";
@@ -7,17 +7,32 @@ import MapAllCourses from "../MapAllCoursesPage/MapAllCoursesPage";
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 
-const NewCoursePage = () => (
-  <div>
-    <div>
-      <h2>Kansas City Golf Courses</h2>
-      <h3>Click on Pin to add</h3>
-    </div>
-    <br />
+class NewCoursePage extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    <MapAllCourses />
-  </div>
-);
+  componentDidMount() {}
+
+  onFormChange = (value) => (event) => {};
+
+  submitForm = (event) => {
+    event.preventDefault();
+  };
+  render() {
+    return (
+      <div>
+        <div>
+          <h2>Kansas City Golf Courses</h2>
+          <h3>Click on Pin to add</h3>
+        </div>
+        <br />
+
+        <MapAllCourses />
+      </div>
+    );
+  }
+}
 
 // this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(NewCoursePage);

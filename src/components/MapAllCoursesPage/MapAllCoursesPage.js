@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import GoogleMapReact from "google-map-react";
-import Marker from "google-map-react";
+import MapMarker from "../MapMarker/MapMarker";
+import { withRouter } from "react-router-dom";
 
 class MapAllCourses extends Component {
   componentDidMount() {
@@ -16,32 +17,54 @@ class MapAllCourses extends Component {
       lat: 39.099789,
       lng: -94.57856,
     },
-    zoom: 10,
+
+    zoom: 9,
+    zoomControl: true,
+    scaleControl: true,
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      clicked: false,
+    };
+  }
+
+  clickMarker = (message) => (event) => {
+    // this.setState({
+    //   clicked: !this.state.clicked,
+    // });
+    console.log("clicked");
   };
 
   homeBack = (event) => {
-    // console.log("Clicked");
     this.props.history.push("/user");
   };
 
   render() {
+    let addMessage = <div></div>;
+
+    if (this.state.clicked) {
+      addMessage = <div className="add-message">I Did It!</div>;
+    }
     const courseList = this.props.store.courses;
     const courseName = courseList.map((item, index) => {
       return (
-        <div
+        <MapMarker
+          onClick={this.clickMarker("HAIL")}
+          item={item}
           key={index}
-          className="marker"
           lat={item.latitude}
           lng={item.longitude}
-        >
-          {item.name}
-        </div>
+        ></MapMarker>
       );
     });
 
     return (
       <div>
-        <div style={{ height: "60vh", width: "60%" }}>
+        <div style={{ height: "70vh", width: "80%" }}>
+          {addMessage}
           <GoogleMapReact
             bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API }}
             defaultCenter={this.props.center}
@@ -56,4 +79,4 @@ class MapAllCourses extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(MapAllCourses);
+export default withRouter(connect(mapStoreToProps)(MapAllCourses));

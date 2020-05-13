@@ -47,7 +47,7 @@ router.post("/logout", (req, res) => {
 // --------------------------------------------------------
 //  create GET for all courses
 router.get("/courses", (req, res) => {
-  const queryText = `SELECT "id", "name", "address", "city", "state", "zip" FROM "courses_list" ORDER BY "id";`;
+  const queryText = `SELECT "id", "name", "address", "city", "state", "zip", "latitude", "longitude" FROM "courses_list" ORDER BY "id";`;
 
   pool
     .query(queryText)
