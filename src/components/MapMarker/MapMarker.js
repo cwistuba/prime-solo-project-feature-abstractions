@@ -44,9 +44,9 @@ class MapMarker extends Component {
       },
       () => {
         this.props.dispatch({ type: "SEND_ADD", payload: this.state });
+        this.props.history.push("/user");
       }
     );
-    // this.props.history.push("/user");
   };
 
   render() {

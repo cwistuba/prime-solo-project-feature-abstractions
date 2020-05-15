@@ -19,12 +19,11 @@ class UserMapMarker extends Component {
     });
   };
 
-  handleDelete = (event) => {
+  handleDelete = (id) => (event) => {
     this.props.dispatch({
       type: "DELETE_LISTING",
-      payload: this.props.match.params.id,
+      payload: id,
     });
-    // this.props.history.push("/user");
   };
 
   render() {
@@ -38,7 +37,7 @@ class UserMapMarker extends Component {
         {this.state.clicked ? (
           <div className="delete-message">
             <p>Would you like to delete?</p>
-            <button onClick={this.handleDelete}>Yes</button>
+            <button onClick={this.handleDelete(this.props.item.id)}>Yes</button>
           </div>
         ) : (
           <div></div>

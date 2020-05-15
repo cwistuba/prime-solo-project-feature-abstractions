@@ -66,7 +66,7 @@ router.get("/courses", (req, res) => {
 router.get("/usercourses", (req, res) => {
   const userId = req.user.id;
   console.log("userID", userId);
-  const queryText = `SELECT "user_id", "courses_list".name, "courses_list".address, "courses_list".city, "courses_list".state, "courses_list".zip, "courses_list".latitude, "courses_list".longitude FROM "user_course"
+  const queryText = `SELECT "user_course".id, "courses_list".name, "courses_list".address, "courses_list".city, "courses_list".state, "courses_list".zip, "courses_list".latitude, "courses_list".longitude FROM "user_course"
   JOIN "user" ON "user".id = "user_course".user_id
   JOIN "courses_list" ON "courses_list".id = "user_course".courses_list_id 
   WHERE "user_course".user_id = $1;`;
@@ -109,8 +109,9 @@ router.post("/usercourses/:id", (req, res) => {
 //  DELETE for user saved Courses
 
 router.delete("/:id", (req, res) => {
-  const queryText = `DELETE FROM user_course WHERE user_course.id=$1;`;
+  const queryText = `DELETE FROM "user_course" WHERE "user_course".id=$1;`;
   const userCourseId = req.params.id;
+
   pool
     .query(queryText, [userCourseId])
     .then((response) => {

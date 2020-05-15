@@ -18,7 +18,8 @@ function* getUserCourses() {
 
 function* deleteUserCourses(action) {
   try {
-    const response = yield axios.delete(`api/user/${action.payload}`);
+    yield axios.delete(`api/user/${action.payload}`);
+    yield put({ type: "GET_USER_COURSES" });
   } catch (error) {
     console.log("Error Deleting", error);
   }
