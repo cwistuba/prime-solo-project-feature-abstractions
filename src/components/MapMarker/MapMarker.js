@@ -1,13 +1,63 @@
-import React from "react";
+// import React from "react";
+// import { connect } from "react-redux";
+// import mapStoreToProps from "../../redux/mapStoreToProps";
+// import "./MapMarker.css";
+
+// const MapMarker = (props) => (
+//   <div className="marker" onClick={() => console.log("Clicked")}>
+//     {props.item.name}
+//   </div>
+// );
+
+// export default connect(mapStoreToProps)(MapMarker);
+
+// ------------------------------------------------------------------
+
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
+import { withRouter } from "react-router-dom";
 import "./MapMarker.css";
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
+class MapMarker extends Component {
+  constructor(props) {
+    super(props);
 
-const MapMarker = (props) => <div className="marker">{props.item.name}</div>;
+    this.state = {
+      clicked: false,
+    };
+  }
 
-// this allows us to use <App /> in index.js
-export default connect(mapStoreToProps)(MapMarker);
+  clickMarker = (message) => (event) => {
+    this.setState({
+      clicked: true,
+    });
+  };
+
+  handleYes = (event) => {
+    //   this.props.dispatch;
+    this.props.history.push("/user");
+  };
+
+  render() {
+    let addMessage = <div></div>;
+    if (this.state.clicked === true) {
+      addMessage = <div className="add-message">Would you like to add?</div>;
+    }
+    return (
+      <div className="marker" onClick={this.clickMarker("Golf Course")}>
+        {this.props.item.name}
+        {this.state.clicked ? (
+          <div className="add-message">
+            <p>Would you like to add?</p>
+            <button onClick={this.handleYes}>Yes</button>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+    );
+  }
+}
+
+export default withRouter(connect(mapStoreToProps)(MapMarker));

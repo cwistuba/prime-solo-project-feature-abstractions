@@ -23,20 +23,20 @@ class MapAllCourses extends Component {
     scaleControl: true,
   };
 
-  constructor(props) {
-    super(props);
+  //   constructor(props) {
+  //     super(props);
 
-    this.state = {
-      clicked: false,
-    };
-  }
+  //     this.state = {
+  //       clicked: false,
+  //     };
+  //   }
 
-  clickMarker = (message) => (event) => {
-    // this.setState({
-    //   clicked: !this.state.clicked,
-    // });
-    console.log("clicked");
-  };
+  //   clickMarker = (message) => (event) => {
+  //     this.setState({
+  //       clicked: !this.state.clicked,
+  //     });
+  //     console.log("golf course marker", event);
+  //   };
 
   homeBack = (event) => {
     this.props.history.push("/user");
@@ -45,14 +45,13 @@ class MapAllCourses extends Component {
   render() {
     let addMessage = <div></div>;
 
-    if (this.state.clicked) {
-      addMessage = <div className="add-message">I Did It!</div>;
-    }
+    // if (this.state.clicked) {
+    //   addMessage = <div className="add-message">Would you like to add?</div>;
+    // }
     const courseList = this.props.store.courses;
     const courseName = courseList.map((item, index) => {
       return (
         <MapMarker
-          onClick={this.clickMarker("HAIL")}
           item={item}
           key={index}
           lat={item.latitude}
@@ -69,6 +68,7 @@ class MapAllCourses extends Component {
             bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API }}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
+            // onClick={this.clickMarker("Golf Course")}
           >
             {courseName}
           </GoogleMapReact>

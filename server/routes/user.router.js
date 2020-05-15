@@ -61,4 +61,42 @@ router.get("/courses", (req, res) => {
     });
 });
 
+// ------------------------------------------------------------
+// GET for user save Courses
+router.get("/usercourses", (req, res) => {
+  const queryText = `SELECT "courses_list_id" FROM "user_course" ORDER BY "id";`;
+
+  pool
+    .query(queryText)
+
+    .then((responseDb) => {
+      res.send(responseDb.rows);
+    })
+    .catch((err) => {
+      console.warn(err);
+      res.sendStatus(500);
+    });
+});
+
+// -----------------------------------------------------------
+//  POST for user saved Courses
+router.post("/", (req, res) => {
+  const newCourse = req.body;
+  const sqlText = `INSERT INTO user_course (user_id, courses_list_id)
+  VALUES ($1, $2)`;
+
+  pool
+    .query(sqlText, [newCourse.user_id, newCourse.courses_list_id])
+
+    .then((result) => {
+      console.log(`Added song to the database`, newCourse);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.warn(err);
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

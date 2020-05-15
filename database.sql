@@ -20,6 +20,12 @@ CREATE TABLE "courses_list" (
     "longitude" DECIMAL (10,7)
 );
 
+CREATE TABLE "user_course" (
+"id" SERIAL PRIMARY KEY,
+"user_id" INT REFERENCES "user" NOT NULL,
+"courses_list_id" INT REFERENCES "courses_list" NOT NULL
+);
+
 INSERT INTO "courses_list" ("name", "address", "city", "state", "zip", "latitude", "longitude")
 VALUES ('Adams Pointe Golf Club', '1601 RD Mize Rd', 'Blue Springs', 'MO', '64014', '39.0223007', '-94.2525549' ),
 ('Teetering Rock Golf Course', '12040 E 86th', 'Kansas City', 'MO', '64138', '38.9652778', '-94.4407998' ),

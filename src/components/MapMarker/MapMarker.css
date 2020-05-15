@@ -6,3 +6,9 @@
   text-align: center;
   font-size: 0.8vw;
 }
+
+.add-message {
+  background-color: lightcoral;
+  color: black;
+  text-align: center;
+}
