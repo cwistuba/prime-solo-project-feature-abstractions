@@ -72,7 +72,9 @@ class MapAllCourses extends Component {
           >
             {courseName}
           </GoogleMapReact>
-          <button onClick={this.homeBack}>Go Back</button>
+          <button className="btn" onClick={this.homeBack}>
+            Go Back
+          </button>
         </div>
       </div>
     );

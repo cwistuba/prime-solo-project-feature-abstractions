@@ -47,7 +47,9 @@ class CourseMap extends Component {
             {userCourseName}
           </GoogleMapReact>
 
-          <button onClick={this.addCourse}>Add Course</button>
+          <button className="btn" onClick={this.addCourse}>
+            Add Course
+          </button>
           {/* <br />
           <div>Your Courses</div>
           <br />
