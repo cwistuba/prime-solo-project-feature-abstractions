@@ -38,7 +38,7 @@ class CourseMap extends Component {
     });
     return (
       <div>
-        <div style={{ height: "60vh", width: "60%" }}>
+        <div style={{ height: "70vh", width: "80%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API }}
             defaultCenter={this.props.center}

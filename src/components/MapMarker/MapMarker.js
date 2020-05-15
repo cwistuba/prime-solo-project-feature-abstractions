@@ -50,11 +50,6 @@ class MapMarker extends Component {
   };
 
   render() {
-    // let addMessage = <div></div>;
-    // if (this.state.clicked === true) {
-    //   addMessage = <div className="add-message">Would you like to add?</div>;
-    // }
-
     return (
       <div className="marker" onClick={this.clickMarker("Golf Course")}>
         {this.props.item.name}

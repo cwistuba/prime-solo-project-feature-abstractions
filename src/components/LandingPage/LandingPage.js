@@ -13,6 +13,10 @@ class LandingPage extends Component {
     this.props.history.push("/login");
   };
 
+  onRegister = (event) => {
+    this.props.history.push("/registration");
+  };
+
   render() {
     return (
       <div className="container">
