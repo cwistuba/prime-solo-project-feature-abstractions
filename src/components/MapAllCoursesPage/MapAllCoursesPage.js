@@ -43,7 +43,7 @@ class MapAllCourses extends Component {
   };
 
   render() {
-    let addMessage = <div></div>;
+    // let addMessage = <div></div>;
 
     // if (this.state.clicked) {
     //   addMessage = <div className="add-message">Would you like to add?</div>;
@@ -63,7 +63,7 @@ class MapAllCourses extends Component {
     return (
       <div>
         <div style={{ height: "70vh", width: "80%" }}>
-          {addMessage}
+          {/* {addMessage} */}
           <GoogleMapReact
             bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API }}
             defaultCenter={this.props.center}

@@ -80,21 +80,38 @@ router.get("/usercourses", (req, res) => {
 
 // -----------------------------------------------------------
 //  POST for user saved Courses
-router.post("/", (req, res) => {
+router.post("/courses", (req, res) => {
   const newCourse = req.body;
-  const sqlText = `INSERT INTO user_course (user_id, courses_list_id)
+  const queryText = `INSERT INTO user_course (user_id, courses_list_id)
   VALUES ($1, $2)`;
 
   pool
-    .query(sqlText, [newCourse.user_id, newCourse.courses_list_id])
+    .query(queryText, [newCourse.user_id, newCourse.courses_list_id])
 
     .then((result) => {
       console.log(`Added song to the database`, newCourse);
-      res.sendStatus(201);
+      res.sendStatus(200);
     })
     .catch((err) => {
       console.warn(err);
       console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
+});
+
+// -----------------------------------------------------------
+//  DELETE for user saved Courses
+
+router.delete("/:id", (req, res) => {
+  const queryText = `DELETE FROM user_course WHERE user_course.id=$1;`;
+  const userCourseId = req.params.id;
+  pool
+    .query(queryText, [userCourseId])
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((error) => {
+      console.log("Error deleting course", error);
       res.sendStatus(500);
     });
 });

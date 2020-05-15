@@ -12,9 +12,6 @@ const UserPage = (props) => (
     <h1 id="welcome">Welcome, {props.store.user.username}!</h1>
     <h2>Your Courses</h2>
     <CourseMap />
-
-    <br />
-    <div>List of Courses</div>
   </div>
 );
 

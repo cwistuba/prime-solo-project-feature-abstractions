@@ -8,24 +8,24 @@ function* getCourses() {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-
-    // the config includes credentials which
-    // allow the server session to recognize the user
-    // If a user is logged in, this will return their information
-    // from the server session (req.user)
     const response = yield axios.get("api/user/courses", config);
-
-    // now that the session has given us a user object
-    // with an id and username set the client-side user object to let
-    // the client-side code know the user is logged in
     yield put({ type: "SET_COURSES", payload: response.data });
   } catch (error) {
     console.log("Courses get request failed", error);
   }
 }
 
+function* postCourses(action) {
+  try {
+    const response = yield axios.post("api/user/courses", action.payload);
+  } catch (error) {
+    console.log("Error posting", error);
+  }
+}
+
 function* coursesSaga() {
   yield takeLatest("GET_COURSES", getCourses);
+  yield takeLatest("SEND_ADD", postCourses);
 }
 
 export default coursesSaga;

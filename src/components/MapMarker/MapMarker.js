@@ -35,7 +35,7 @@ class MapMarker extends Component {
   };
 
   handleYes = (event) => {
-    //   this.props.dispatch;
+    this.props.dispatch({ type: "SEND_ADD", payload: this.state });
     this.props.history.push("/user");
   };
 
