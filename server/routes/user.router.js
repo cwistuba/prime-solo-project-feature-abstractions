@@ -64,12 +64,18 @@ router.get("/courses", (req, res) => {
 // ------------------------------------------------------------
 // GET for user save Courses
 router.get("/usercourses", (req, res) => {
-  const queryText = `SELECT "courses_list_id" FROM "user_course" ORDER BY "id";`;
+  const userId = req.user.id;
+  console.log("userID", userId);
+  const queryText = `SELECT "user_id", "courses_list".name, "courses_list".address, "courses_list".city, "courses_list".state, "courses_list".zip, "courses_list".latitude, "courses_list".longitude FROM "user_course"
+  JOIN "user" ON "user".id = "user_course".user_id
+  JOIN "courses_list" ON "courses_list".id = "user_course".courses_list_id 
+  WHERE "user_course".user_id = $1;`;
 
   pool
-    .query(queryText)
+    .query(queryText, [userId])
 
     .then((responseDb) => {
+      console.log(responseDb.rows);
       res.send(responseDb.rows);
     })
     .catch((err) => {
@@ -80,7 +86,7 @@ router.get("/usercourses", (req, res) => {
 
 // -----------------------------------------------------------
 //  POST for user saved Courses
-router.post("/courses", (req, res) => {
+router.post("/usercourses/:id", (req, res) => {
   const newCourse = req.body;
   const queryText = `INSERT INTO user_course (user_id, courses_list_id)
   VALUES ($1, $2)`;
@@ -89,7 +95,7 @@ router.post("/courses", (req, res) => {
     .query(queryText, [newCourse.user_id, newCourse.courses_list_id])
 
     .then((result) => {
-      console.log(`Added song to the database`, newCourse);
+      console.log(`Added course to the database`, newCourse);
       res.sendStatus(200);
     })
     .catch((err) => {

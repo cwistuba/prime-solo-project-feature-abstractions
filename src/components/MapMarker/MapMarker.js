@@ -25,6 +25,8 @@ class MapMarker extends Component {
 
     this.state = {
       clicked: false,
+      courses_list_id: "",
+      user_id: "",
     };
   }
 
@@ -34,23 +36,32 @@ class MapMarker extends Component {
     });
   };
 
-  handleYes = (event) => {
-    this.props.dispatch({ type: "SEND_ADD", payload: this.state });
-    this.props.history.push("/user");
+  handleYes = (id) => (event) => {
+    this.setState(
+      {
+        courses_list_id: id,
+        user_id: this.props.store.user.id,
+      },
+      () => {
+        this.props.dispatch({ type: "SEND_ADD", payload: this.state });
+      }
+    );
+    // this.props.history.push("/user");
   };
 
   render() {
-    let addMessage = <div></div>;
-    if (this.state.clicked === true) {
-      addMessage = <div className="add-message">Would you like to add?</div>;
-    }
+    // let addMessage = <div></div>;
+    // if (this.state.clicked === true) {
+    //   addMessage = <div className="add-message">Would you like to add?</div>;
+    // }
+
     return (
       <div className="marker" onClick={this.clickMarker("Golf Course")}>
         {this.props.item.name}
         {this.state.clicked ? (
           <div className="add-message">
             <p>Would you like to add?</p>
-            <button onClick={this.handleYes}>Yes</button>
+            <button onClick={this.handleYes(this.props.item.id)}>Yes</button>
           </div>
         ) : (
           <div></div>

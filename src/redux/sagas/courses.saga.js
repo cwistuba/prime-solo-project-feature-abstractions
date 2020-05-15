@@ -17,7 +17,11 @@ function* getCourses() {
 
 function* postCourses(action) {
   try {
-    const response = yield axios.post("api/user/courses", action.payload);
+    yield axios.post(`api/user/usercourses/${action.payload.user_id}`, {
+      courses_list_id: action.payload.courses_list_id,
+      user_id: action.payload.user_id,
+    });
+    yield put({ type: "GET_USER_COURSES" });
   } catch (error) {
     console.log("Error posting", error);
   }
